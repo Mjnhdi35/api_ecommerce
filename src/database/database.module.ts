@@ -11,9 +11,19 @@ export const KNEX_CONNECTION = 'KNEX_CONNECTION';
         {
             provide: KNEX_CONNECTION,
             useFactory: (configService: ConfigService) => {
+                const isProduction = configService.get('NODE_ENV') === 'production';
+                const connectionString = configService.get<string>('DATABASE_URL');
+
+                const connectionConfig = isProduction
+                    ? {
+                        connectionString,
+                        ssl: { rejectUnauthorized: false }, // Required for Neon (Serverless Postgres)
+                    }
+                    : connectionString;
+
                 return knex({
                     client: 'pg',
-                    connection: configService.get<string>('DATABASE_URL'),
+                    connection: connectionConfig,
                     searchPath: ['public'],
                     pool: {
                         min: 0,

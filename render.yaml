@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: api-ecommerce
+    env: docker
+    region: singapore # Change to your preferred region (e.g. oregon)
+    plan: free # or starter
+    branch: main
+    repo: https://github.com/your-username/your-repo # Update this
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: DATABASE_URL
+        sync: false # Set in Dashboard for security

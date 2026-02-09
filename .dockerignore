@@ -1,0 +1,35 @@
+# Git
+.git
+.gitignore
+
+# Dependencies
+node_modules
+
+# Build output
+dist
+build
+coverage
+
+# Environment variables
+.env
+.env.*
+
+# Tests & Logs
+test
+*.spec.ts
+*.test.ts
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+render.yaml
+
+# Documentation
+*.md
+docs

@@ -12,9 +12,14 @@ if (!connection) {
     throw new Error('DATABASE_URL is not defined in .env');
 }
 
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Neon requires SSL in production
+const ssl = isProduction ? { rejectUnauthorized: false } : undefined;
+
 export default {
     client: 'pg',
-    connection,
+    connection: isProduction ? { connectionString: connection, ssl } : connection,
     migrations: {
         directory: './src/database/migrations',
         extension: 'ts',
