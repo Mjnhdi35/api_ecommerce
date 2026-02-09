@@ -28,7 +28,7 @@
     "migrate:rollback": "NODE_OPTIONS='--import tsx' knex migrate:rollback --knexfile knexfile.ts",
     "seed:make": "NODE_OPTIONS='--import tsx' knex seed:make --knexfile knexfile.ts -x ts",
     "seed:run": "NODE_OPTIONS='--import tsx' knex seed:run --knexfile knexfile.ts",
-    "migrate:prod": "knex migrate:latest --knexfile knexfile.js"
+    "migrate:prod": "knex migrate:latest --knexfile knexfile.cjs"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

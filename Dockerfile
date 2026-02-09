@@ -39,8 +39,8 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
-# Copy Production Knex Config (Rename to standard knexfile.js)
-COPY --from=builder /app/knexfile.production.cjs ./knexfile.js
+# Copy Production Knex Config (Keep .cjs extension for CommonJS support in ESM project)
+COPY --from=builder /app/knexfile.production.cjs ./knexfile.cjs
 
 # Expose port (Render listens on $PORT, default 3000)
 ENV PORT=3000

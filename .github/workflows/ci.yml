@@ -90,3 +90,15 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      # Tự động Deploy ngay lập tức khi có Image mới
+      - name: Trigger Render Deploy
+        if: github.ref == 'refs/heads/main' && success()
+        run: |
+          # Gọi Deploy Hook của Render (Cần setup trong GitHub Secrets)
+          if [ -n "${{ secrets.RENDER_DEPLOY_HOOK }}" ]; then
+            curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+            echo "✅ Triggered Render Deployment"
+          else
+            echo "⚠️ RENDER_DEPLOY_HOOK not set. Skipping auto-deploy."
+          fi
