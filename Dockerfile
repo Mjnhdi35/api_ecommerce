@@ -29,4 +29,4 @@ COPY --from=builder /app/knexfile.production.cjs ./knexfile.cjs
 ENV PORT=3000
 EXPOSE 3000
 
-CMD ["sh", "-c", "npm run migrate:prod && node dist/main"]
+CMD ["sh", "-c", "npm run migrate:prod && node dist/src/main"]

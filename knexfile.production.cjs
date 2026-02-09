@@ -11,12 +11,12 @@ module.exports = {
         ? { connectionString: connection, ssl: { rejectUnauthorized: false } }
         : connection,
     migrations: {
-        directory: './dist/database/migrations',
+        directory: './dist/src/database/migrations',
         extension: 'js',
         loadExtensions: ['.js'],
     },
     seeds: {
-        directory: './dist/database/seeds',
+        directory: './dist/src/database/seeds',
         extension: 'js',
         loadExtensions: ['.js'],
     },
